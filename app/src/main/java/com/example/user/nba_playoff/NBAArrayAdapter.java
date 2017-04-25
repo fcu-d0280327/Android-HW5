@@ -1,6 +1,7 @@
 package com.example.user.nba_playoff;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +49,12 @@ public class NBAArrayAdapter extends ArrayAdapter<NBAitem> {
         guestScore.setText(String.valueOf(item.getGuestScore()));
         guestImg.setImageResource(item.getGuestImg());
 //        guestImg.setImageResource(R.drawable.hou);
+
+        if(item.getGuestScore() > item.getHostScore()){
+            guestScore.setTextColor(Color.RED);
+        }else{
+            hostScore.setTextColor(Color.RED);
+        }
 
         return itemlayout;
 
