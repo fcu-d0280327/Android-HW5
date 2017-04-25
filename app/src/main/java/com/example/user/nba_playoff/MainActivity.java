@@ -8,6 +8,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -26,6 +32,20 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        String sdf = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        TextView time = (TextView)findViewById(R.id.tvTime);
+        time.setText(sdf);
+
+        ArrayList<NBAitem> nbaItems = new ArrayList<NBAitem>();
+        nbaItems.add(new NBAitem(R.drawable.okc, "OKC", 99, R.drawable.hou, "HOU", 100));
+        nbaItems.add(new NBAitem(R.drawable.mem, "MEM", 80, R.drawable.sas, "SAS", 69));
+
+
+        NBAArrayAdapter adapter =
+                new NBAArrayAdapter(this, nbaItems);
+        ListView lv = (ListView)findViewById(R.id.lv);
+        lv.setAdapter(adapter);
+
     }
 
     @Override
